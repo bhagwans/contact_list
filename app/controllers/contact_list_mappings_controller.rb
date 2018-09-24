@@ -1,0 +1,2 @@
+class ContactListMappingsController < ApplicationController
+end
