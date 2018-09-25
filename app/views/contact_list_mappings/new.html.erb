@@ -1,25 +1,59 @@
 
-<%= form_with scope: :contact_list_mappings, :url => { :action => "create" }, local: true do |form| %>
+<div style="display: flex">
+  <div style="flex: 0.5">
+        <%= form_with scope: :contact_list_mappings, :url => { :action => "create" }, local: true do |form| %>
 
-    <p>
-      Select Contact List: <%= form.collection_select(:cont_list_id, ContList.all, :id, :name)%>
-    </p>
-   
-    <p>
-      Select Contact: <%= form.collection_select(:contact_id, Contact.all, :id, :name)%>
-    </p>
-   
- 
-    <p>
-      <%= form.submit %>
-    </p>
-    
-<% end %>
+            <p>
+              Select Contact List: <%= form.collection_select(:cont_list_id, ContList.all, :id, :name)%>
+            </p>
+          
+            <p>
+              Select Contact: <%= form.collection_select(:contact_id, Contact.all, :id, :name)%>
+            </p>
+          
+        
+            <p>
+              <%= form.submit %>
+            </p>
+          
+      <% end %>
+      <p>
+      <%= link_to "Click here to create contact", '/contacts/new' %>
+      </p>
+      <p>
+      <%= link_to "Click here to create contact list", '/cont_lists/new' %>
+      </p>
+  </div>
+  <div  style="flex: 0.5">
+          Select Contact list: <%= select("select", "contact_list_id",ContList.all.map{|t| [t.name, t.id]}, {:include_blank => false, :id => "contact_list_idd"}) %>
+          <input type="submit" name="Select" onClick="getContactData()"/>
+          <div id="contacts">
+          </div>
+  </div>
+</div>
+<script>
+          function getContactData() {
+            var contactListComp = document.getElementById('select_contact_list_id');
+            var contactListId = contactListComp.options[contactListComp.selectedIndex].value;
+            var url = "/cont_lists/" + contactListId
+            fetch(url)
+              .then(function(response) {
+                  response.json().then(function(data) {
+                    var htmlData = "<p>List of contacts:</p>";
+                    for(var i = 0; i < data.length; i++) {
+                        htmlData += "<p>name:"+data[i].name+"  email: "+data[i].email+"</p>"
+                    }
+                   
+                    var contacts = document.getElementById('contacts');
+                   
+                    contacts.innerHTML = htmlData;
+                  })
+              })
+              
+          }
+</script>
 
-<p>
-<%= link_to "Click here to create contact", '/contacts/new' %>
-</p>
-<p>
-<%= link_to "Click here to create contact list", '/cont_lists/new' %>
-</p>
+
+
+
 

@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :contact_list_mappings
   resources :contacts
   resources :cont_lists
+  get '/cont_lists/:id', to: 'cont_lists#index'
   root 'contact_list_mappings#new'
 end

@@ -1,7 +1,11 @@
 class ContListsController < ApplicationController
-    
+    skip_before_action :verify_authenticity_token
     def new
 
+    end
+
+    def index
+      
     end
 
     def create
@@ -14,6 +18,11 @@ class ContListsController < ApplicationController
             redirect_to '/cont_lists/new'
         end
      
+    end
+
+    def show
+        @contact_list = ContList.find(params[:id])
+        render json:  @contact_list.contacts
     end
 
 end
