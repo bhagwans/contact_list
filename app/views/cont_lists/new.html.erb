@@ -1,0 +1,10 @@
+
+<%= form_with scope: :cont_lists, :url => { :action => "create" }, local: true do |form| %>
+  <p>
+    <%= form.text_field :name %><br>
+  </p>
+ 
+    <p>
+    <%= form.submit %>
+  </p>
+<% end %>

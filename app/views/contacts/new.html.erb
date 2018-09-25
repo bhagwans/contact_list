@@ -1,0 +1,13 @@
+
+<%= form_with scope: :contacts, :url => { :action => "create" }, local: true do |form| %>
+  <p>
+    <%= form.text_field :name %><br>
+  </p>
+   <p>
+    <%= form.text_field :email %><br>
+  </p>
+ 
+    <p>
+    <%= form.submit %>
+  </p>
+<% end %>

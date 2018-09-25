@@ -1,0 +1,25 @@
+
+<%= form_with scope: :contact_list_mappings, :url => { :action => "create" }, local: true do |form| %>
+
+    <p>
+      Select Contact List: <%= form.collection_select(:cont_list_id, ContList.all, :id, :name)%>
+    </p>
+   
+    <p>
+      Select Contact: <%= form.collection_select(:contact_id, Contact.all, :id, :name)%>
+    </p>
+   
+ 
+    <p>
+      <%= form.submit %>
+    </p>
+    
+<% end %>
+
+<p>
+<%= link_to "Click here to create contact", '/contacts/new' %>
+</p>
+<p>
+<%= link_to "Click here to create contact list", '/cont_lists/new' %>
+</p>
+

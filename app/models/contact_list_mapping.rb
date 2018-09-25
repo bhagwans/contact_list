@@ -1,4 +1,5 @@
 class ContactListMapping < ApplicationRecord
   belongs_to :contact
-  belongs_to :con_list
+  belongs_to :cont_list
+  
 end
