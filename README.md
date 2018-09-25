@@ -27,3 +27,6 @@ Things you may want to cover:
 
 NOTE:
     1) All the pages are plane html pages without much css
+    2) Tried to include all the validation
+    3) Validation messages show from object errors directly.
+    3) In case of any error please restart the server
